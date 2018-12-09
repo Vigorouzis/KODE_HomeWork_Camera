@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KODE_HomeWork_Camera</string>
+    <string name="hint_edit">Введите имя</string>
+    <string name="photo">Сделать фото</string>
+</resources>

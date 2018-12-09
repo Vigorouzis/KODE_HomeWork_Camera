@@ -67,19 +67,16 @@ class MainActivity : AppCompatActivity() {
 
 
                         val second = Intent(this, SecondActivity::class.java)
-                        second.putExtra(
-                            PHOTO,
-                            photoFile.absolutePath
-                        )
+                        second.putExtra(PHOTO, photoFile.absolutePath)
                         val text = Name.text.toString()
                         second.putExtra("Text", text)
                         startActivity(second)
-             
+
                     }
 
 
                     else -> {
-                        Toast.makeText(this,"REQUEST_CAMERA -> else!? Crushing result",LENGTH_SHORT).show()
+                        Toast.makeText(this, "REQUEST_CAMERA -> else!? Crushing result", LENGTH_SHORT).show()
                     }
                 }
             }
