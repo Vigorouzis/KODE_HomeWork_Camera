@@ -8,7 +8,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
-import android.util.Log
+import android.widget.Toast
+import android.widget.Toast.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.IOException
@@ -27,9 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val text=Name.text.toString()
-       val second=Intent(this,SecondActivity::class.java)
-        second.putExtra("Text",text)
+
 
         TakePicture.setOnClickListener {
 
@@ -43,11 +42,7 @@ class MainActivity : AppCompatActivity() {
 
                     photoFile.createNewFile()
 
-                    mUriFromProvider = FileProvider.getUriForFile(
-                        this,
-                        "$packageName.fileprovider",
-                        photoFile
-                    )
+                    mUriFromProvider = FileProvider.getUriForFile(this, "$packageName.fileprovider", photoFile)
 
 
 
@@ -71,17 +66,20 @@ class MainActivity : AppCompatActivity() {
                     Activity.RESULT_OK -> {
 
 
-                        val afterCaptureIntent = Intent(this, SecondActivity::class.java)
-                        afterCaptureIntent.putExtra(
+                        val second = Intent(this, SecondActivity::class.java)
+                        second.putExtra(
                             PHOTO,
                             photoFile.absolutePath
                         )
-                        startActivity(afterCaptureIntent)
+                        val text = Name.text.toString()
+                        second.putExtra("Text", text)
+                        startActivity(second)
+             
                     }
 
 
                     else -> {
-                        Log.wtf(TAG, "REQUEST_CAMERA -> else!? Crushing result")
+                        Toast.makeText(this,"REQUEST_CAMERA -> else!? Crushing result",LENGTH_SHORT).show()
                     }
                 }
             }

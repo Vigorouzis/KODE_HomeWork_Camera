@@ -22,7 +22,8 @@ class SecondActivity : AppCompatActivity() {
 
         picture.setImageBitmap(MediaStore.Images.Media.getBitmap(contentResolver, uriFromProvider))
 
-        val str = intent.getStringExtra("Text")
+        val Intent = getIntent();
+        val str = Intent.getStringExtra("Text")
         result.text = str.toString()
 
 
