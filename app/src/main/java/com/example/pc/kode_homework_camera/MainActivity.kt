@@ -17,7 +17,6 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    val TAG = "MainActivity"
     val PHOTO = "uri"
     val CAMERA_REQUEST_CODE = 0
 
@@ -28,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
         TakePicture.setOnClickListener {
 
             val captureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -38,13 +35,9 @@ class MainActivity : AppCompatActivity() {
                 try {
                     photoFile = File.createTempFile("photo_${Date().time}", ".jpg", this.filesDir)
 
-
-
                     photoFile.createNewFile()
 
                     mUriFromProvider = FileProvider.getUriForFile(this, "$packageName.fileprovider", photoFile)
-
-
 
                     captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mUriFromProvider)
                     startActivityForResult(captureIntent, CAMERA_REQUEST_CODE)
@@ -65,18 +58,14 @@ class MainActivity : AppCompatActivity() {
 
                     Activity.RESULT_OK -> {
 
-
                         val second = Intent(this, SecondActivity::class.java)
                         second.putExtra(PHOTO, photoFile.absolutePath)
                         val text = Name.text.toString()
                         second.putExtra("Text", text)
                         startActivity(second)
-
                     }
-
-
                     else -> {
-                        Toast.makeText(this, "REQUEST_CAMERA -> else!? Crushing result", LENGTH_SHORT).show()
+                        Toast.makeText(this, "Warning", LENGTH_SHORT).show()
                     }
                 }
             }

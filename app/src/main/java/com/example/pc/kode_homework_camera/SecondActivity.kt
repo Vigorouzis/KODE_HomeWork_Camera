@@ -25,9 +25,5 @@ class SecondActivity : AppCompatActivity() {
         val Intent = getIntent();
         val str = Intent.getStringExtra("Text")
         result.text = str.toString()
-
-
     }
-
-
 }
